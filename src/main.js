@@ -1,6 +1,8 @@
 import './core/moni';
 
 moni.loaded(() => {
-  moni('div') 
-    .remove()
-})
+  moni('button').on('click', function() {
+    moni("#myDiv").classes().toggle('active');
+  });
+
+});

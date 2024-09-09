@@ -74,6 +74,13 @@ Removes a class from the element.
 ```javascript
 moni('#myDiv').classes().remove('active');
 ```
+##### toggle(className)
+Toggle a class for the element.
+```javascript
+moni('button').on('click', function() {
+  moni('#myDiv').classes().toggle('active');
+});
+```
 ##### toArray()
 Converts the class list to an array.
 ```javascript

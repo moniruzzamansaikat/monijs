@@ -28,6 +28,12 @@ export default {
         }
         return this;
       },
+      toggle: function (className) {
+        if (classList) {
+          classList.toggle(className);
+        }
+        return this;
+      },
       toArray: function () {
         return classList ? Array.from(classList) : [];
       }
