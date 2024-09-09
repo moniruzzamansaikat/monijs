@@ -1,5 +1,6 @@
 {
-  "name": "moni",
+  "name": "moni22",
+  "main": "dist/moni.js",
   "author": {
     "email": "monirsaikat1@gmail.com",
     "name": "Moniruzzaman Saikat",
@@ -10,6 +11,21 @@
   "private": false,
   "version": "1.0.0",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moniruzzamansaikat/monijs"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "DOM",
+    "manipulation",
+    "events",
+    "minimal"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
