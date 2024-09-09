@@ -74,6 +74,15 @@ moni('button').on('click', function() {
   console.log(name);
 });
 ```
+#### add(element, ?times)
+Add new elements inside another element
+```javascript
+moni('button').on('click', function() {
+  moni('div').add('<strong>Small</strong>', 4);
+  moni('div').add('<p>Paragraph</p>');
+});
+
+```
 
 #### classes()
 Provides methods to interact with the class list of an element.
