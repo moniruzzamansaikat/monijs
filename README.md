@@ -57,6 +57,14 @@ Remove elements from the dom
 ```javascript
 moni('div').remove()
 ```
+#### attr()
+Get or set attributes
+```javascript
+moni('button').on('click', function() {
+  const id = moni("#myDiv").css('color', 'red').attr('id');
+  moni('#myDiv').attr('data-abc', 'xyz');
+});
+```
 
 #### classes()
 Provides methods to interact with the class list of an element.

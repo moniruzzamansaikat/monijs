@@ -27,6 +27,17 @@ export default {
     });
 
     return this;
-  }
+  },
 
+  attr: function (name, value) {
+    if (!value) {
+      return this[0] ? this[0].getAttribute(name) : undefined;
+    } else {
+      this.each(function (el) {
+        el.setAttribute(name, value);
+      });
+
+      return this;
+    }
+  }
 };
