@@ -57,12 +57,21 @@ Remove elements from the dom
 ```javascript
 moni('div').remove()
 ```
-#### attr()
+#### attr(key, ?value)
 Get or set attributes
 ```javascript
 moni('button').on('click', function() {
   const id = moni("#myDiv").css('color', 'red').attr('id');
   moni('#myDiv').attr('data-abc', 'xyz');
+});
+```
+#### data(key, ?value)
+Get or set dataset attributes
+```javascript
+moni('button').on('click', function() {
+  const name = moni('div').data('name');
+  
+  console.log(name);
 });
 ```
 

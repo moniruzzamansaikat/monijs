@@ -39,5 +39,18 @@ export default {
 
       return this;
     }
+  },
+
+  data: function (name, value) {
+    if (!value) {
+      return this[0] ? this[0].dataset[name] : undefined;
+    } else {
+      this.each(function (el) {
+        el.dataset[name] = value;
+      });
+      
+      return this;
+    }
   }
+
 };
