@@ -52,6 +52,11 @@ moni('.myClass').each(function(el) {
   console.log(el);
 });
 ```
+#### remove()
+Remove elements from the dom
+```javascript
+moni('div').remove()
+```
 
 #### classes()
 Provides methods to interact with the class list of an element.

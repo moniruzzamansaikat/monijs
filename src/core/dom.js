@@ -18,4 +18,15 @@ export default {
 
     return this;
   },
+
+  remove: function () {
+    this.each(function (el) {
+      if (el.parentNode) {
+        el.parentNode.removeChild(el);
+      }
+    });
+
+    return this;
+  }
+
 };
