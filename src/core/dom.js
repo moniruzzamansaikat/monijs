@@ -84,6 +84,23 @@ export default {
     }
 
     return this;
+  },
+
+  val: function (value) {
+    if (value === undefined) {
+      return this[0] ? this[0].value : undefined;
+    } else {
+      this.each(function (el) {
+        if (el.tagName === 'SELECT') {
+          el.value = value;
+        } else if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.value = value;
+        }
+      });
+      return this;
+    }
   }
+  
+  
 
 };

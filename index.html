@@ -14,9 +14,24 @@
 </head>
 
 <body>
-  <button>Button</button>
-  
-  <div id="myDiv"></div>
+  <form>
+    <input name="username" />
+
+    <select name="coding" id="coding">
+      <option value="php">php</option>
+      <option value="js">js</option>
+      <option value="cpp">cpp</option>
+    </select>
+
+    <textarea name="message" id="message"></textarea>
+
+    <label for="checked">
+      <input type="checkbox" name="checked" value="yes" id="checked">
+    </label>
+    
+    <button type="submit">Submit</button>
+    
+  </form>
   
   <script type="module" src="./src/main.js"></script>
 </body>

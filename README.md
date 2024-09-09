@@ -81,7 +81,23 @@ moni('button').on('click', function() {
   moni('div').add('<strong>Small</strong>', 4);
   moni('div').add('<p>Paragraph</p>');
 });
+```
+#### val(?value)
+Get or set value for a given element
+```javascript
+moni('form').on('submit', function(e) {
+  e.preventDefault();
+  
+  const username = moni('input').val();
+  const coding   = moni('select').val()
 
+  console.log(username);
+  console.log(coding);
+
+  moni('select').val('js');
+  moni('input').val('');
+  moni('textarea').val('message');
+});
 ```
 
 #### classes()
