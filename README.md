@@ -12,6 +12,12 @@ Or, if using ES6 modules:
 ```javascript
 import moni from 'path/to/moni.min.js';
 ```
+Or, using npm:
+
+```shell
+npm i moni22
+```
+
 
 ### Methods
 #### moni(selector)
