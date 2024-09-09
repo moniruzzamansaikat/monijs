@@ -114,5 +114,3 @@ const color = moni('#myDiv').css('color');
 // Set the 'color' property
 moni('#myDiv').css('color', 'red');
 ```
-
-# monijs
