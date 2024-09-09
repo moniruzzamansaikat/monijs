@@ -1,0 +1,22 @@
+{
+  "name": "moni",
+  "author": {
+    "email": "monirsaikat1@gmail.com",
+    "name": "Moniruzzaman Saikat",
+    "url": "https://github.com/moniruzzamansaikat"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/moniruzzamansaikat/monijs",
+  "private": false,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "vite": "^5.4.1"
+  }
+}
