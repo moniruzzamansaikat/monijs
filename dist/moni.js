@@ -1,4 +1,4 @@
-const r = {
+const c = {
   html: function(t) {
     return t ? (this.each(function(e) {
       e.innerHTML = t;
@@ -30,9 +30,9 @@ const r = {
         e = e || 1;
         const n = document.createDocumentFragment();
         for (let i = 0; i < e; i++) {
-          const s = document.createElement("div");
-          for (s.innerHTML = t; s.firstChild; )
-            n.appendChild(s.firstChild);
+          const r = document.createElement("div");
+          for (r.innerHTML = t; r.firstChild; )
+            n.appendChild(r.firstChild);
         }
         this.each(function(i) {
           i.appendChild(n.cloneNode(!0));
@@ -40,11 +40,48 @@ const r = {
       } else
         e = e || 1, this.each(function(n) {
           for (let i = 0; i < e; i++) {
-            const s = document.createElement(t);
-            n.appendChild(s);
+            const r = document.createElement(t);
+            n.appendChild(r);
           }
         });
+    else t instanceof moni && this.each(function(n) {
+      t.each(function(i) {
+        n.appendChild(i.cloneNode(!0));
+      });
+    });
     return this;
+  },
+  addPrevious: function(t) {
+    return typeof t == "string" ? this.each(function(e) {
+      const n = document.createDocumentFragment(), i = document.createElement("div");
+      for (i.innerHTML = t; i.firstChild; )
+        n.appendChild(i.firstChild);
+      e.parentNode.insertBefore(n, e);
+    }) : t instanceof moni && this.each(function(e) {
+      t.each(function(n) {
+        e.parentNode.insertBefore(n.cloneNode(!0), e);
+      });
+    }), this;
+  },
+  addBehind: function(t) {
+    return typeof t == "string" ? this.each(function(e) {
+      const n = document.createDocumentFragment(), i = document.createElement("div");
+      for (i.innerHTML = t; i.firstChild; )
+        n.appendChild(i.firstChild);
+      e.nextSibling ? e.parentNode.insertBefore(n, e.nextSibling) : e.parentNode.appendChild(n);
+    }) : t instanceof moni && this.each(function(e) {
+      t.each(function(n) {
+        e.nextSibling ? e.parentNode.insertBefore(n.cloneNode(!0), e.nextSibling) : e.parentNode.appendChild(n.cloneNode(!0));
+      });
+    }), this;
+  },
+  siblings: function() {
+    const t = [];
+    return this.each(function(e) {
+      Array.prototype.forEach.call(e.parentNode.children, function(n) {
+        n !== e && t.push(n);
+      });
+    }), moni(t);
   },
   val: function(t) {
     return t === void 0 ? this[0] ? this[0].value : void 0 : (this.each(function(e) {
@@ -70,19 +107,76 @@ const r = {
           n.checked && (t[n.name] = n.value);
         else if (n.tagName === "SELECT" && n.multiple) {
           const i = [];
-          Array.prototype.forEach.call(n.options, function(s) {
-            s.selected && i.push(s.value);
+          Array.prototype.forEach.call(n.options, function(r) {
+            r.selected && i.push(r.value);
           }), t[n.name] = i;
         } else n.type === "file" ? t[n.name] = n.files.length > 1 ? n.files : n.files[0] : t[n.name] = n.value;
     }), t;
+  },
+  after: function(t) {
+    return this.each(function(e) {
+      e.insertAdjacentHTML("afterend", t);
+    }), this;
+  },
+  before: function(t) {
+    return this.each(function(e) {
+      e.insertAdjacentHTML("beforebegin", t);
+    }), this;
+  },
+  children: function() {
+    const t = [];
+    return this.each(function(e) {
+      Array.prototype.push.apply(t, e.children);
+    }), moni(t);
+  },
+  empty: function() {
+    return this.each(function(t) {
+      t.innerHTML = "";
+    }), this;
+  },
+  clone: function(t = !0) {
+    const e = [];
+    return this.each(function(n) {
+      e.push(n.cloneNode(t || !1));
+    }), moni(e);
+  },
+  search: function(t) {
+    const e = [];
+    return typeof t == "string" ? this.each(function(n) {
+      const i = n.querySelectorAll(t);
+      Array.prototype.push.apply(e, i);
+    }) : t instanceof moni && this.each(function(n) {
+      t.each(function(i) {
+        n.contains(i) && e.push(i);
+      });
+    }), moni(e);
+  },
+  near: function(t) {
+    const e = [], n = typeof t == "string";
+    let i;
+    return n ? i = [t] : i = Array.isArray(t) ? t.map((r) => r.nodeType ? r.tagName.toLowerCase() : null).filter(Boolean) : Array.from(t).map((r) => r.nodeType ? r.tagName.toLowerCase() : null).filter(Boolean), this.each(function(r) {
+      let o = r;
+      for (; o && o !== document; ) {
+        if (n) {
+          if (o.matches(t)) {
+            e.push(o);
+            break;
+          }
+        } else if (i.some((s) => o.tagName.toLowerCase() === s)) {
+          e.push(o);
+          break;
+        }
+        o = o.parentElement;
+      }
+    }), moni(e);
   }
-}, o = {
+}, f = {
   on: function(t, e) {
     return this.each(function(n) {
       n.addEventListener(t, e);
     }), this;
   }
-}, u = {
+}, a = {
   css: function(t, e) {
     return e ? this.each(function(n) {
       n.style[t] = e;
@@ -125,10 +219,10 @@ const r = {
           const i = document.querySelectorAll(n);
           Array.prototype.push.apply(this, i);
         }
-      else n.nodeType && (this[0] = n, this.length = 1);
+      else n.nodeType ? (this[0] = n, this.length = 1) : Array.isArray(n) && Array.prototype.push.apply(this, n);
       return this;
     }
-  }, Object.assign(e.fn, r, o, u), e.loaded = function(n) {
+  }, Object.assign(e.fn, c, f, a), e.loaded = function(n) {
     document.readyState !== "loading" ? n() : document.addEventListener("DOMContentLoaded", n);
   }, e.fn.init.prototype = e.fn, t.moni = e;
 })(window);
