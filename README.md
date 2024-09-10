@@ -129,6 +129,17 @@ moni('form').on('submit', function(e) {
   console.log(values);
 });
 ```
+#### before(elem)
+Add an element before the matched element
+```javascript
+moni('div').before('<div>Div 0</div>')
+```
+
+#### after(elem)
+Add an element after the matched element
+```javascript
+moni('div').after('<div>Div 1</div>')
+```
 
 #### classes()
 Provides methods to interact with the class list of an element.

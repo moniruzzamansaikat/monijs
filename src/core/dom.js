@@ -150,6 +150,23 @@ export default {
     });
 
     return values;
+  },
+
+  after: function (html) {
+    this.each(function (el) {
+      el.insertAdjacentHTML('afterend', html);
+    });
+
+    return this;
+  },
+
+  before: function (html) {
+    this.each(function (el) {
+      el.insertAdjacentHTML('beforebegin', html);
+    });
+
+    return this;
   }
+
 
 };
