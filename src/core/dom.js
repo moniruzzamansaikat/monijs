@@ -156,7 +156,6 @@ export default {
     this.each(function (el) {
       el.insertAdjacentHTML('afterend', html);
     });
-
     return this;
   },
 
@@ -164,9 +163,7 @@ export default {
     this.each(function (el) {
       el.insertAdjacentHTML('beforebegin', html);
     });
-
     return this;
   }
-
 
 };

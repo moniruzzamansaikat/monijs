@@ -25,6 +25,8 @@ import css from './css';
       } else if (selector.nodeType) {
         this[0] = selector;
         this.length = 1;
+      } else if (Array.isArray(selector)) {
+        Array.prototype.push.apply(this, selector);
       }
 
       return this;
