@@ -99,6 +99,22 @@ moni('form').on('submit', function(e) {
   moni('textarea').val('message');
 });
 ```
+#### first()
+Get the first matched element
+```javascript
+moni('p').first().css('color', 'red');
+```
+
+#### last()
+Get the last matched element
+```javascript
+moni('p').last().css('color', 'red');
+```
+#### at(index)
+Get the element at the given index
+```javascript
+moni('p').at(2).css('color', 'purple');
+```
 
 #### classes()
 Provides methods to interact with the class list of an element.

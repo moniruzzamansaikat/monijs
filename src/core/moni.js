@@ -31,6 +31,7 @@ import css from './css';
     },
   };
 
+
   Object.assign(moniJs.fn, dom, events, css);
 
   moniJs.loaded = function (callback) {

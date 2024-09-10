@@ -99,8 +99,29 @@ export default {
       });
       return this;
     }
+  },
+
+  first: function () {
+    const element = this[0];
+    if (element) return moni(element);
+
+    return null;
+  },
+
+  last: function () {
+    const element = this[this.length - 1];
+    if (element) return moni(element);
+
+    return null;
+  },
+
+  at: function (index) {
+    if (index < this.length) {
+      return moni(this[index]);
+    }
+
+    return null;
   }
-  
-  
+
 
 };
