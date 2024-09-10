@@ -161,6 +161,24 @@ const cloned = moni('ul').clone(); // or clone(false);
 moni('body').add(cloned);
 ```
 
+#### addPrevious(element)
+Add an element to the previous of moni(selector)
+```javascript
+moni('p').addPrevious('<p>Another paragraph</p>');
+```
+
+#### addBehind(element)
+Add an element to the behind of moni(selector)
+```javascript
+moni('p').addBehind('<div>Another paragraph</div>');
+```
+
+#### siblings(element)
+Select all the siblings of matched element
+```javascript
+moni('ul li').siblings().css('color', 'red');
+```
+
 #### classes()
 Provides methods to interact with the class list of an element.
 ##### has(className)

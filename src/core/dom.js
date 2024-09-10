@@ -92,6 +92,73 @@ export default {
     return this;
   },
 
+  addPrevious: function (content) {
+    if (typeof content === 'string') {
+      this.each(function (el) {
+        const fragment = document.createDocumentFragment();
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = content;
+        while (tempDiv.firstChild) {
+          fragment.appendChild(tempDiv.firstChild);
+        }
+        el.parentNode.insertBefore(fragment, el);
+      });
+    } else if (content instanceof moni) {
+      this.each(function (el) {
+        content.each(function (clonedEl) {
+          el.parentNode.insertBefore(clonedEl.cloneNode(true), el);
+        });
+      });
+    }
+
+    return this;
+  },
+
+  addBehind: function (content) {
+    if (typeof content === 'string') {
+      this.each(function (el) {
+        const fragment = document.createDocumentFragment();
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = content;
+        while (tempDiv.firstChild) {
+          fragment.appendChild(tempDiv.firstChild);
+        }
+        if (el.nextSibling) {
+          el.parentNode.insertBefore(fragment, el.nextSibling);
+        } else {
+          el.parentNode.appendChild(fragment);
+        }
+      });
+    } else if (content instanceof moni) {
+      this.each(function (el) {
+        content.each(function (clonedEl) {
+          if (el.nextSibling) {
+            el.parentNode.insertBefore(clonedEl.cloneNode(true), el.nextSibling);
+          } else {
+            el.parentNode.appendChild(clonedEl.cloneNode(true));
+          }
+        });
+      });
+    }
+
+    return this;
+  },
+
+  siblings: function () {
+    const siblingsArray = [];
+
+    this.each(function (el) {
+      Array.prototype.forEach.call(el.parentNode.children, function (sibling) {
+        if (sibling !== el) {
+          siblingsArray.push(sibling);
+        }
+      });
+    });
+
+    return moni(siblingsArray);
+  },
+
+
   val: function (value) {
     if (value === undefined) {
       return this[0] ? this[0].value : undefined;
@@ -194,10 +261,10 @@ export default {
     const clonedElements = [];
 
     this.each(function (el) {
-      clonedElements.push(el.cloneNode(deep || false)); 
+      clonedElements.push(el.cloneNode(deep || false));
     });
 
-    return moni(clonedElements); 
+    return moni(clonedElements);
   },
 
 
