@@ -141,6 +141,26 @@ Add an element after the matched element
 moni('div').after('<div>Div 1</div>')
 ```
 
+#### children()
+Return a list of all the children of the matched element
+```javascript
+const children   = moni('div').children();
+const firstChild = children.at(0);          // .first();
+```
+
+#### empty()
+Empty the contents of the matched element
+```javascript
+moni('ul').empty();
+```
+
+#### clone(?deep = true)
+Clone a matched element. By default deep cloning is set. 
+```javascript
+const cloned = moni('ul').clone(); // or clone(false);
+moni('body').add(cloned);
+```
+
 #### classes()
 Provides methods to interact with the class list of an element.
 ##### has(className)

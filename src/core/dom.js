@@ -81,6 +81,12 @@ export default {
           }
         });
       }
+    } else if (content instanceof moni) {
+      this.each(function (el) {
+        content.each(function (clonedEl) {
+          el.appendChild(clonedEl.cloneNode(true));
+        });
+      });
     }
 
     return this;
@@ -164,6 +170,35 @@ export default {
       el.insertAdjacentHTML('beforebegin', html);
     });
     return this;
-  }
+  },
+
+  children: function () {
+    const childrenArray = [];
+
+    this.each(function (el) {
+      Array.prototype.push.apply(childrenArray, el.children);
+    });
+
+    return moni(childrenArray);
+  },
+
+  empty: function () {
+    this.each(function (el) {
+      el.innerHTML = '';
+    });
+
+    return this;
+  },
+
+  clone: function (deep = true) {
+    const clonedElements = [];
+
+    this.each(function (el) {
+      clonedElements.push(el.cloneNode(deep || false)); 
+    });
+
+    return moni(clonedElements); 
+  },
+
 
 };
