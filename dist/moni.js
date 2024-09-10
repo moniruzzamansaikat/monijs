@@ -1,12 +1,12 @@
-const c = {
+const f = {
   html: function(t) {
-    return t ? (this.each(function(e) {
-      e.innerHTML = t;
+    return t ? (this.each(function(n) {
+      n.innerHTML = t;
     }), this) : this[0] ? this[0].innerHTML : void 0;
   },
   each: function(t) {
-    return Array.prototype.forEach.call(this, function(e, n) {
-      t.call(e, e, n);
+    return Array.prototype.forEach.call(this, function(n, e) {
+      t.call(n, n, e);
     }), this;
   },
   remove: function() {
@@ -14,78 +14,78 @@ const c = {
       t.parentNode && t.parentNode.removeChild(t);
     }), this;
   },
-  attr: function(t, e) {
-    return e ? (this.each(function(n) {
-      n.setAttribute(t, e);
+  attr: function(t, n) {
+    return n ? (this.each(function(e) {
+      e.setAttribute(t, n);
     }), this) : this[0] ? this[0].getAttribute(t) : void 0;
   },
-  data: function(t, e) {
-    return e ? (this.each(function(n) {
-      n.dataset[t] = e;
+  data: function(t, n) {
+    return n ? (this.each(function(e) {
+      e.dataset[t] = n;
     }), this) : this[0] ? this[0].dataset[t] : void 0;
   },
-  add: function(t, e) {
+  add: function(t, n) {
     if (typeof t == "string")
       if (t.includes("<")) {
-        e = e || 1;
-        const n = document.createDocumentFragment();
-        for (let i = 0; i < e; i++) {
+        n = n || 1;
+        const e = document.createDocumentFragment();
+        for (let i = 0; i < n; i++) {
           const r = document.createElement("div");
           for (r.innerHTML = t; r.firstChild; )
-            n.appendChild(r.firstChild);
+            e.appendChild(r.firstChild);
         }
         this.each(function(i) {
-          i.appendChild(n.cloneNode(!0));
+          i.appendChild(e.cloneNode(!0));
         });
       } else
-        e = e || 1, this.each(function(n) {
-          for (let i = 0; i < e; i++) {
+        n = n || 1, this.each(function(e) {
+          for (let i = 0; i < n; i++) {
             const r = document.createElement(t);
-            n.appendChild(r);
+            e.appendChild(r);
           }
         });
-    else t instanceof moni && this.each(function(n) {
+    else t instanceof moni && this.each(function(e) {
       t.each(function(i) {
-        n.appendChild(i.cloneNode(!0));
+        e.appendChild(i.cloneNode(!0));
       });
     });
     return this;
   },
   addPrevious: function(t) {
-    return typeof t == "string" ? this.each(function(e) {
-      const n = document.createDocumentFragment(), i = document.createElement("div");
+    return typeof t == "string" ? this.each(function(n) {
+      const e = document.createDocumentFragment(), i = document.createElement("div");
       for (i.innerHTML = t; i.firstChild; )
-        n.appendChild(i.firstChild);
-      e.parentNode.insertBefore(n, e);
-    }) : t instanceof moni && this.each(function(e) {
-      t.each(function(n) {
-        e.parentNode.insertBefore(n.cloneNode(!0), e);
+        e.appendChild(i.firstChild);
+      n.parentNode.insertBefore(e, n);
+    }) : t instanceof moni && this.each(function(n) {
+      t.each(function(e) {
+        n.parentNode.insertBefore(e.cloneNode(!0), n);
       });
     }), this;
   },
   addBehind: function(t) {
-    return typeof t == "string" ? this.each(function(e) {
-      const n = document.createDocumentFragment(), i = document.createElement("div");
+    return typeof t == "string" ? this.each(function(n) {
+      const e = document.createDocumentFragment(), i = document.createElement("div");
       for (i.innerHTML = t; i.firstChild; )
-        n.appendChild(i.firstChild);
-      e.nextSibling ? e.parentNode.insertBefore(n, e.nextSibling) : e.parentNode.appendChild(n);
-    }) : t instanceof moni && this.each(function(e) {
-      t.each(function(n) {
-        e.nextSibling ? e.parentNode.insertBefore(n.cloneNode(!0), e.nextSibling) : e.parentNode.appendChild(n.cloneNode(!0));
+        e.appendChild(i.firstChild);
+      n.nextSibling ? n.parentNode.insertBefore(e, n.nextSibling) : n.parentNode.appendChild(e);
+    }) : t instanceof moni && this.each(function(n) {
+      t.each(function(e) {
+        n.nextSibling ? n.parentNode.insertBefore(e.cloneNode(!0), n.nextSibling) : n.parentNode.appendChild(e.cloneNode(!0));
       });
     }), this;
   },
   siblings: function() {
     const t = [];
-    return this.each(function(e) {
-      Array.prototype.forEach.call(e.parentNode.children, function(n) {
-        n !== e && t.push(n);
+    return this.each(function(n) {
+      Array.prototype.forEach.call(n.parentNode.children, function(e) {
+        e !== n && t.push(e);
       });
     }), moni(t);
   },
   val: function(t) {
-    return t === void 0 ? this[0] ? this[0].value : void 0 : (this.each(function(e) {
-      (e.tagName === "SELECT" || e.tagName === "INPUT" || e.tagName === "TEXTAREA") && (e.value = t);
+    return t === void 0 ? this[0] ? this[0].value : void 0 : (this.each(function(n) {
+      (n.tagName === "SELECT" || n.tagName === "INPUT" || n.tagName === "TEXTAREA") && (n.value = t);
     }), this);
   },
   first: function() {
@@ -100,33 +100,33 @@ const c = {
     return t < this.length ? moni(this[t]) : null;
   },
   values: function() {
-    const t = {}, e = this[0].elements;
-    return Array.prototype.forEach.call(e, function(n) {
-      if (n.name && !n.disabled)
-        if (n.type === "checkbox" || n.type === "radio")
-          n.checked && (t[n.name] = n.value);
-        else if (n.tagName === "SELECT" && n.multiple) {
+    const t = {}, n = this[0].elements;
+    return Array.prototype.forEach.call(n, function(e) {
+      if (e.name && !e.disabled)
+        if (e.type === "checkbox" || e.type === "radio")
+          e.checked && (t[e.name] = e.value);
+        else if (e.tagName === "SELECT" && e.multiple) {
           const i = [];
-          Array.prototype.forEach.call(n.options, function(r) {
+          Array.prototype.forEach.call(e.options, function(r) {
             r.selected && i.push(r.value);
-          }), t[n.name] = i;
-        } else n.type === "file" ? t[n.name] = n.files.length > 1 ? n.files : n.files[0] : t[n.name] = n.value;
+          }), t[e.name] = i;
+        } else e.type === "file" ? t[e.name] = e.files.length > 1 ? e.files : e.files[0] : t[e.name] = e.value;
     }), t;
   },
   after: function(t) {
-    return this.each(function(e) {
-      e.insertAdjacentHTML("afterend", t);
+    return this.each(function(n) {
+      n.insertAdjacentHTML("afterend", t);
     }), this;
   },
   before: function(t) {
-    return this.each(function(e) {
-      e.insertAdjacentHTML("beforebegin", t);
+    return this.each(function(n) {
+      n.insertAdjacentHTML("beforebegin", t);
     }), this;
   },
   children: function() {
     const t = [];
-    return this.each(function(e) {
-      Array.prototype.push.apply(t, e.children);
+    return this.each(function(n) {
+      Array.prototype.push.apply(t, n.children);
     }), moni(t);
   },
   empty: function() {
@@ -135,94 +135,98 @@ const c = {
     }), this;
   },
   clone: function(t = !0) {
-    const e = [];
-    return this.each(function(n) {
-      e.push(n.cloneNode(t || !1));
-    }), moni(e);
+    const n = [];
+    return this.each(function(e) {
+      n.push(e.cloneNode(t || !1));
+    }), moni(n);
   },
   search: function(t) {
-    const e = [];
-    return typeof t == "string" ? this.each(function(n) {
-      const i = n.querySelectorAll(t);
-      Array.prototype.push.apply(e, i);
-    }) : t instanceof moni && this.each(function(n) {
+    const n = [];
+    return typeof t == "string" ? this.each(function(e) {
+      const i = e.querySelectorAll(t);
+      Array.prototype.push.apply(n, i);
+    }) : t instanceof moni && this.each(function(e) {
       t.each(function(i) {
-        n.contains(i) && e.push(i);
+        e.contains(i) && n.push(i);
       });
-    }), moni(e);
+    }), moni(n);
   },
   near: function(t) {
-    const e = [], n = typeof t == "string";
+    const n = [], e = typeof t == "string";
     let i;
-    return n ? i = [t] : i = Array.isArray(t) ? t.map((r) => r.nodeType ? r.tagName.toLowerCase() : null).filter(Boolean) : Array.from(t).map((r) => r.nodeType ? r.tagName.toLowerCase() : null).filter(Boolean), this.each(function(r) {
-      let o = r;
-      for (; o && o !== document; ) {
-        if (n) {
-          if (o.matches(t)) {
-            e.push(o);
+    return e ? i = [t] : i = Array.isArray(t) ? t.map((r) => r.nodeType ? r.tagName.toLowerCase() : null).filter(Boolean) : Array.from(t).map((r) => r.nodeType ? r.tagName.toLowerCase() : null).filter(Boolean), this.each(function(r) {
+      let s = r;
+      for (; s && s !== document; ) {
+        if (e) {
+          if (s.matches(t)) {
+            n.push(s);
             break;
           }
-        } else if (i.some((s) => o.tagName.toLowerCase() === s)) {
-          e.push(o);
+        } else if (i.some((c) => s.tagName.toLowerCase() === c)) {
+          n.push(s);
           break;
         }
-        o = o.parentElement;
+        s = s.parentElement;
       }
-    }), moni(e);
-  }
-}, f = {
-  on: function(t, e) {
-    return this.each(function(n) {
-      n.addEventListener(t, e);
-    }), this;
+    }), moni(n);
   }
 }, a = {
-  css: function(t, e) {
-    return e ? this.each(function(n) {
-      n.style[t] = e;
+  on: function(t, n) {
+    return this.each(function(e) {
+      e.addEventListener(t, n);
+    }), this;
+  }
+}, u = {
+  css: function(t, n) {
+    return n ? this.each(function(e) {
+      e.style[t] = n;
     }) : this[0] ? getComputedStyle(this[0])[t] : void 0;
   },
   classes: function() {
-    const t = this[0] ? this[0].classList : void 0, e = {
-      has: function(n) {
-        return t ? t.contains(n) : !1;
+    const t = this[0] ? this[0].classList : void 0, n = {
+      has: function(e) {
+        return t ? t.contains(e) : !1;
       },
-      add: function(n) {
-        return t && t.add(n), this;
+      add: function(e) {
+        return t && t.add(e), this;
       },
-      remove: function(n) {
-        return t && t.remove(n), this;
+      remove: function(e) {
+        return t && t.remove(e), this;
       },
-      toggle: function(n) {
-        return t && t.toggle(n), this;
+      toggle: function(e) {
+        return t && t.toggle(e), this;
       },
       toArray: function() {
         return t ? Array.from(t) : [];
       }
     };
-    return Object.assign(Object.create(this.constructor.fn), e, this);
+    return Object.assign(Object.create(this.constructor.fn), n, this);
+  }
+}, o = function(t) {
+  return new o.fn.init(t);
+};
+o.fn = o.prototype = {
+  constructor: o,
+  length: 0,
+  init: function(t) {
+    if (!t) return this;
+    if (t instanceof o) return t;
+    if (typeof t == "string")
+      if (t[0] === "#")
+        this[0] = document.getElementById(t.slice(1)), this.length = 1;
+      else {
+        const n = document.querySelectorAll(t);
+        Array.prototype.push.apply(this, n);
+      }
+    else t.nodeType ? (this[0] = t, this.length = 1) : Array.isArray(t) && Array.prototype.push.apply(this, t);
+    return this;
   }
 };
-(function(t) {
-  const e = function(n) {
-    return new e.fn.init(n);
-  };
-  e.fn = e.prototype = {
-    constructor: e,
-    length: 0,
-    init: function(n) {
-      if (!n) return this;
-      if (typeof n == "string")
-        if (n[0] === "#")
-          this[0] = document.getElementById(n.slice(1)), this.length = 1;
-        else {
-          const i = document.querySelectorAll(n);
-          Array.prototype.push.apply(this, i);
-        }
-      else n.nodeType ? (this[0] = n, this.length = 1) : Array.isArray(n) && Array.prototype.push.apply(this, n);
-      return this;
-    }
-  }, Object.assign(e.fn, c, f, a), e.loaded = function(n) {
-    document.readyState !== "loading" ? n() : document.addEventListener("DOMContentLoaded", n);
-  }, e.fn.init.prototype = e.fn, t.moni = e;
-})(window);
+Object.assign(o.fn, f, a, u);
+o.loaded = function(t) {
+  document.readyState !== "loading" ? t() : document.addEventListener("DOMContentLoaded", t);
+};
+o.fn.init.prototype = o.fn;
+export {
+  o as default
+};
