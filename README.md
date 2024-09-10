@@ -115,6 +115,15 @@ Get the element at the given index
 ```javascript
 moni('p').at(2).css('color', 'purple');
 ```
+#### values(index)
+Grab a form's data simply
+```javascript
+moni('form').on('submit', function(e) {
+  e.preventDefault();
+  const values = moni('form').values();
+  console.log(values);
+});
+```
 
 #### classes()
 Provides methods to interact with the class list of an element.

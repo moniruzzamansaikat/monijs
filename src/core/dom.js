@@ -121,7 +121,35 @@ export default {
     }
 
     return null;
-  }
+  },
 
+  values: function () {
+    const values = {};
+    const elements = this[0].elements;
+
+    Array.prototype.forEach.call(elements, function (el) {
+      if (el.name && !el.disabled) {
+        if ((el.type === 'checkbox' || el.type === 'radio')) {
+          if (el.checked) {
+            values[el.name] = el.value;
+          }
+        } else if (el.tagName === 'SELECT' && el.multiple) {
+          const selectedValues = [];
+          Array.prototype.forEach.call(el.options, function (option) {
+            if (option.selected) {
+              selectedValues.push(option.value);
+            }
+          });
+          values[el.name] = selectedValues;
+        } else if (el.type === 'file') {
+          values[el.name] = el.files.length > 1 ? el.files : el.files[0]; // For multiple files or a single file
+        } else {
+          values[el.name] = el.value;
+        }
+      }
+    });
+
+    return values;
+  }
 
 };
