@@ -10,7 +10,7 @@
   "homepage": "https://moniruzzamansaikat.github.io/monijs/",
   "private": false,
   "version": "1.2.1",
-  "module": "dist/monie.js",
+  "module": "dist/moni.js",
   "type": "module",
   "repository": {
     "type": "git",
