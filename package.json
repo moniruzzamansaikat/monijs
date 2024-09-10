@@ -35,6 +35,8 @@
   },
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",
+    "fs": "^0.0.1-security",
+    "marked": "^14.1.2",
     "vite": "^5.4.1"
   }
 }

@@ -7,11 +7,6 @@ Include `moni.js` in your project and start manipulating DOM elements using the 
 ```javascript
 <script src="path/to/moni.min.js"></script>
 ```
-Or, if using ES6 modules:
-
-```javascript
-import moni from 'path/to/moni.min.js';
-```
 Or, using npm:
 
 ```shell
