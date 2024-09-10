@@ -2,6 +2,8 @@
 
 `moni.js` is a minimal library for DOM manipulation and event handling. Below is a list of available methods with usage examples.
 
+> Website: https://moniruzzamansaikat.github.io/monijs/
+
 #### Getting Started
 Include `moni.js` in your project and start manipulating DOM elements using the `moni` keyword.
 ```javascript
