@@ -2,52 +2,48 @@ import dom from './dom';
 import events from './events';
 import css from './css';
 
-(function (global) {
-  const moniJs = function (selector) {
-    return new moniJs.fn.init(selector);
-  };
+const moniJs = function (selector) {
+  return new moniJs.fn.init(selector);
+};
 
-  moniJs.fn = moniJs.prototype = {
-    constructor: moniJs,
-    length: 0,
+moniJs.fn = moniJs.prototype = {
+  constructor: moniJs,
+  length: 0,
 
-    init: function (selector) {
-      if (!selector) return this;
+  init: function (selector) {
+    if (!selector) return this;
 
-      if (selector instanceof moniJs) return selector;
+    if (selector instanceof moniJs) return selector;
 
-      if (typeof selector === 'string') {
-        if (selector[0] === '#') {
-          this[0] = document.getElementById(selector.slice(1));
-          this.length = 1;
-        } else {
-          const nodeList = document.querySelectorAll(selector);
-          Array.prototype.push.apply(this, nodeList);
-        }
-      } else if (selector.nodeType) {
-        this[0] = selector;
+    if (typeof selector === 'string') {
+      if (selector[0] === '#') {
+        this[0] = document.getElementById(selector.slice(1));
         this.length = 1;
-      } else if (Array.isArray(selector)) {
-        Array.prototype.push.apply(this, selector);
+      } else {
+        const nodeList = document.querySelectorAll(selector);
+        Array.prototype.push.apply(this, nodeList);
       }
-
-      return this;
-    },
-  };
-
-
-  Object.assign(moniJs.fn, dom, events, css);
-
-  moniJs.loaded = function (callback) {
-    if (document.readyState !== 'loading') {
-      callback();
-    } else {
-      document.addEventListener('DOMContentLoaded', callback);
+    } else if (selector.nodeType) {
+      this[0] = selector;
+      this.length = 1;
+    } else if (Array.isArray(selector)) {
+      Array.prototype.push.apply(this, selector);
     }
-  };
 
-  moniJs.fn.init.prototype = moniJs.fn;
+    return this;
+  },
+};
 
-  global.moni = moniJs;
+Object.assign(moniJs.fn, dom, events, css);
 
-})(window);
+moniJs.loaded = function (callback) {
+  if (document.readyState !== 'loading') {
+    callback();
+  } else {
+    document.addEventListener('DOMContentLoaded', callback);
+  }
+};
+
+moniJs.fn.init.prototype = moniJs.fn;
+
+export default moniJs;
