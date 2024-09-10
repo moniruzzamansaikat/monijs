@@ -14,6 +14,8 @@ import css from './css';
     init: function (selector) {
       if (!selector) return this;
 
+      if (selector instanceof moniJs) return selector;
+
       if (typeof selector === 'string') {
         if (selector[0] === '#') {
           this[0] = document.getElementById(selector.slice(1));
