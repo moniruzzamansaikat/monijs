@@ -179,6 +179,25 @@ Select all the siblings of matched element
 moni('ul li').siblings().css('color', 'red');
 ```
 
+#### search(query)
+Search elements inside moni(selector)
+```javascript
+moni('ul').search(
+  moni('.bad')
+).css('color', 'red');
+```
+
+#### near(query)
+Find the nearest matching element.
+```javascript
+moni('li').near(
+  moni('div')
+).css('background-color', 'blue');
+
+moni('li').near('div').css('background-color', 'blue');
+
+```
+
 #### classes()
 Provides methods to interact with the class list of an element.
 ##### has(className)

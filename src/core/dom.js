@@ -267,5 +267,59 @@ export default {
     return moni(clonedElements);
   },
 
+  search: function (query) {
+    const matchedElements = [];
 
+    if (typeof query === 'string') {
+      this.each(function (el) {
+        const foundElements = el.querySelectorAll(query);
+        Array.prototype.push.apply(matchedElements, foundElements);
+      });
+    } else if (query instanceof moni) {
+      this.each(function (el) {
+        query.each(function (element) {
+          if (el.contains(element)) {
+            matchedElements.push(element);
+          }
+        });
+      });
+    }
+
+    return moni(matchedElements);
+  },
+
+  near: function (query) {
+    const closestElements = [];
+
+    const isSelector = typeof query === 'string';
+
+    let selectors;
+    if (isSelector) {
+      selectors = [query];
+    } else {
+      selectors = Array.isArray(query) ?
+        query.map(el => el.nodeType ? el.tagName.toLowerCase() : null).filter(Boolean) :
+        Array.from(query).map(el => el.nodeType ? el.tagName.toLowerCase() : null).filter(Boolean);
+    }
+
+    this.each(function (el) {
+      let currentElement = el;
+      while (currentElement && currentElement !== document) {
+        if (isSelector) {
+          if (currentElement.matches(query)) {
+            closestElements.push(currentElement);
+            break;
+          }
+        } else {
+          if (selectors.some(selector => currentElement.tagName.toLowerCase() === selector)) {
+            closestElements.push(currentElement);
+            break;
+          }
+        }
+        currentElement = currentElement.parentElement;
+      }
+    });
+
+    return moni(closestElements);
+  }
 };
