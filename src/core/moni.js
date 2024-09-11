@@ -52,4 +52,8 @@ moniJs.loaded = function (callback) {
 
 moniJs.fn.init.prototype = moniJs.fn;
 
-export default moniJs;
+window.moni = moniJs;
+
+export {
+  moniJs as moni
+};
