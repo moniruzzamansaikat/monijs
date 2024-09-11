@@ -21,6 +21,10 @@
     </div>
     <p><code>moni.js</code> is a minimal library for DOM manipulation and event handling. Below is a list of available
       methods with usage examples.</p>
+    <blockquote>
+      <p>Website: <a
+          href="https://moniruzzamansaikat.github.io/monijs/">https://moniruzzamansaikat.github.io/monijs/</a></p>
+    </blockquote>
     <h4>Getting Started</h4>
     <p>Include <code>moni.js</code> in your project and start manipulating DOM elements using the <code>moni</code>
       keyword.</p>
@@ -30,7 +34,7 @@
     <pre><code class="language-shell">npm i moni22
 </code></pre>
     <p>Or, using cdn:</p>
-    <pre><code class="language-html">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/moni22@1.1.0/dist/moni.min.js&quot;&gt;&lt;/script&gt;
+    <pre><code class="language-html">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/moni22/dist/moni.min.js&quot;&gt;&lt;/script&gt;
 </code></pre>
     <h3>Methods</h3>
     <h4>moni(selector)</h4>
@@ -198,6 +202,29 @@ const color = moni(&#39;#myDiv&#39;).css(&#39;color&#39;);
 
 // Set the &#39;color&#39; property
 moni(&#39;#myDiv&#39;).css(&#39;color&#39;, &#39;red&#39;);
+</code></pre>
+    <h4>moni().ajax()</h4>
+    <p>Follow the example: </p>
+    <pre><code class="language-javascript">moni(&#39;form&#39;).on(&#39;submit&#39;, e =&gt; {
+  e.preventDefault();
+
+  const formData = moni(&#39;form&#39;).values();
+
+  moni()
+    .ajax()
+    .request(&#39;http://localhost:3000/users&#39;)
+    .type(&#39;POST&#39;)
+    .loading(() =&gt; console.log(&#39;Loading...&#39;))
+    .header({
+      &#39;Content-Type&#39;: &#39;application/json&#39;,
+    })
+    .send(formData)
+    .failed((error) =&gt; console.error(error))
+    .success((response) =&gt; console.log(&#39;Success:&#39;, response))
+    .end(() =&gt; console.log(&#39;Request finished&#39;))
+    .execute();
+
+});
 </code></pre>
     <!-- Markdown converted to HTML -->
   </div>

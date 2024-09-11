@@ -17,7 +17,7 @@ npm i moni22
 Or, using cdn:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/moni22@1.1.0/dist/moni.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moni22/dist/moni.min.js"></script>
 ```
 
 
