@@ -1,3 +1,5 @@
+import moni from './moni';
+
 export default {
   html: function (value) {
     if (!value) {

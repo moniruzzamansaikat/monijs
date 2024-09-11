@@ -1,6 +1,7 @@
 import dom from './dom';
 import events from './events';
 import css from './css';
+import moniAjax from './ajax';
 
 const moniJs = function (selector) {
   return new moniJs.fn.init(selector);
@@ -32,8 +33,13 @@ moniJs.fn = moniJs.prototype = {
 
     return this;
   },
+
+  ajax: function () {
+    return moniAjax();
+  }
 };
 
+// Add methods from dom, events, css
 Object.assign(moniJs.fn, dom, events, css);
 
 moniJs.loaded = function (callback) {
