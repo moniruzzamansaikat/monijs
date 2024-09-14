@@ -1,6 +1,6 @@
 {
   "name": "moni22",
-  "main": "dist/moni.es.js",
+  "main": "dist/moni.umd.min.js",
   "author": {
     "email": "monirsaikat1@gmail.com",
     "name": "Moniruzzaman Saikat",
@@ -9,8 +9,8 @@
   "license": "MIT",
   "homepage": "https://moniruzzamansaikat.github.io/monijs/",
   "private": false,
-  "version": "1.2.4",
-  "module": "dist/moni.js",
+  "version": "1.2.5",
+  "module": "dist/moni.es.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/moniruzzamansaikat/monijs"
