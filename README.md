@@ -7,7 +7,7 @@
 #### Getting Started
 Include `moni.js` in your project and start manipulating DOM elements using the `moni` keyword.
 ```javascript
-<script src="path/to/moni.min.js"></script>
+<script src="path/to/moni.umd.js"></script>
 ```
 Or, using npm:
 
@@ -17,7 +17,8 @@ npm i moni22
 Or, using cdn:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/moni22/dist/moni.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moni22"></script>
+
 ```
 
 

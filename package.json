@@ -9,7 +9,7 @@
   "license": "MIT",
   "homepage": "https://moniruzzamansaikat.github.io/monijs/",
   "private": false,
-  "version": "1.2.6",
+  "version": "1.2.7",
   "module": "dist/moni.es.js",
   "repository": {
     "type": "git",

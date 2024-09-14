@@ -4,14 +4,14 @@ import css from './css';
 import moniAjax from './ajax';
 
 (function (global, factory) {
-  if (typeof module === 'object' && typeof module.exports === 'object') {
+  if (typeof module === "object" && typeof module.exports === "object") {
     module.exports = factory(global);
-  } else if (typeof define === 'function' && define.amd) {
+  } else if (typeof define === "function" && define.amd) {
     define([], factory);
   } else {
     global.moni = factory(global);
   }
-})(typeof window !== 'undefined' ? window : this, function (global) {
+})(typeof window !== "undefined" ? window : this, function (global) {
   const moni = function (selector) {
     return new moni.fn.init(selector);
   };
