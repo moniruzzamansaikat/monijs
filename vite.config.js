@@ -10,8 +10,8 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/core/moni.js'),
       name: 'moniJs',
-      fileName: (format) => `moni.${format}${format === 'es' ? '' : '.min'}.js`,
-      formats: ['es', 'umd', 'cjs'], 
+      fileName: (format) => `moni.${format}.js`,
+      formats: ['umd', 'es'], 
     },
     rollupOptions: {
       output: {

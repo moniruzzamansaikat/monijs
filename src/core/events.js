@@ -5,5 +5,13 @@ export default {
     });
 
     return this;
+  },
+
+  off: function (event, callback) {
+    this.each(function (el) {
+      el.removeEventListener(event, callback);
+    });
+
+    return this;
   }
 };

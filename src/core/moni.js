@@ -1,27 +1,29 @@
+import dom from './dom';
+import events from './events';
+import css from './css';
+import moniAjax from './ajax';
+
 (function (global, factory) {
-  if (typeof module === "object" && typeof module.exports === "object") {
+  if (typeof module === 'object' && typeof module.exports === 'object') {
     module.exports = factory(global);
+  } else if (typeof define === 'function' && define.amd) {
+    define([], factory);
   } else {
     global.moni = factory(global);
   }
-}(typeof window !== "undefined" ? window : this, function (window) {
-  const dom      = require('./dom');
-  const events   = require('./events');
-  const css      = require('./css');
-  const moniAjax = require('./ajax');
-
-  const moniJs = function (selector) {
-    return new moniJs.fn.init(selector);
+})(typeof window !== 'undefined' ? window : this, function (global) {
+  const moni = function (selector) {
+    return new moni.fn.init(selector);
   };
 
-  moniJs.fn = moniJs.prototype = {
-    constructor: moniJs,
+  moni.fn = moni.prototype = {
+    constructor: moni,
     length: 0,
 
     init: function (selector) {
       if (!selector) return this;
 
-      if (selector instanceof moniJs) return selector;
+      if (selector instanceof moni) return selector;
 
       if (typeof selector === 'string') {
         if (selector[0] === '#') {
@@ -46,9 +48,9 @@
     }
   };
 
-  Object.assign(moniJs.fn, dom, events, css);
+  Object.assign(moni.fn, dom, events, css);
 
-  moniJs.loaded = function (callback) {
+  moni.loaded = function (callback) {
     if (document.readyState !== 'loading') {
       callback();
     } else {
@@ -56,7 +58,9 @@
     }
   };
 
-  moniJs.fn.init.prototype = moniJs.fn;
+  moni.fn.init.prototype = moni.fn;
 
-  return moniJs;
-}));
+  return moni;
+});
+
+export default moni;
