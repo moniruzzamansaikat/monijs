@@ -1,4 +1,17 @@
+interface Callbacks {
+  loading: () => void;
+  failed: (error: any) => void;
+  success: (data: any) => void;
+  end: () => void;
+}
+
 class Ajax {
+  url: string;
+  method: string;
+  headers: Record<string, string>;
+  data: any;
+  callbacks: Callbacks;
+
   constructor() {
     this.url = '';
     this.method = 'GET';
@@ -12,17 +25,17 @@ class Ajax {
     };
   }
 
-  request(url) {
+  request(url: string) {
     this.url = url;
     return this;
   }
 
-  type(method) {
+  type(method: string) {
     this.method = method.toUpperCase();
     return this;
   }
 
-  header(headers) {
+  header(headers: Record<string, string>) {
     this.headers = {
       ...this.headers,
       ...headers
@@ -30,7 +43,7 @@ class Ajax {
     return this;
   }
 
-  send(data) {
+  send(data: any) {
     if (this.headers['Content-Type'] && this.headers['Content-Type'] === 'application/json') {
       this.data = JSON.stringify(data);
     } else {
@@ -49,22 +62,22 @@ class Ajax {
     return this;
   }
 
-  loading(callback) {
+  loading(callback: () => void) {
     this.callbacks.loading = callback;
     return this;
   }
 
-  failed(callback) {
+  failed(callback: (error: any) => void) {
     this.callbacks.failed = callback;
     return this;
   }
 
-  success(callback) {
+  success(callback: (data: any) => void) {
     this.callbacks.success = callback;
     return this;
   }
 
-  end(callback) {
+  end(callback: () => void) {
     this.callbacks.end = callback;
     return this;
   }
@@ -81,7 +94,7 @@ class Ajax {
     callbacks.loading();
 
     try {
-      const options = {
+      const options: RequestInit = {
         method,
         headers: {
           ...headers,
@@ -98,7 +111,7 @@ class Ajax {
 
       const responseData = await response.json();
       callbacks.success(responseData);
-    } catch (error) {
+    } catch (error: any) {
       // Detect network issues (like typo in URL) or failed HTTP requests
       if (error.message === 'Failed to fetch') {
         callbacks.failed({

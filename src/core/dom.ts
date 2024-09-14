@@ -298,8 +298,8 @@ export default {
       selectors = [query];
     } else {
       selectors = Array.isArray(query) ?
-        query.map(el => el.nodeType ? el.tagName.toLowerCase() : null).filter(Boolean) :
-        Array.from(query).map(el => el.nodeType ? el.tagName.toLowerCase() : null).filter(Boolean);
+        query.map((el: Element) => el.nodeType ? el.tagName.toLowerCase() : null).filter(Boolean) :
+        Array.from(query).map((el: Element) => el.nodeType ? el.tagName.toLowerCase() : null).filter(Boolean);
     }
 
     this.each(function (el) {

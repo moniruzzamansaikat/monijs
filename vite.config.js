@@ -8,7 +8,7 @@ import {
 export default defineConfig({
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/core/moni.js'),
+      entry: resolve(__dirname, 'src/core/moni.ts'),
       name: 'moniJs',
       fileName: (format) => `moni.${format}.js`,
       formats: ['umd', 'es'], 

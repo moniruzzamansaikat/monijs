@@ -21,7 +21,20 @@
   </form>
   
 
-  <script type="module" src="./src/main.js"></script>
+  <script src="./dist/moni.umd.js"></script>
+
+  <script>
+    moni.loaded(() => {
+
+      moni('form').on('submit', function(e) {
+        e.preventDefault();
+        const values = moni(this).values();
+
+        console.log(values);
+      });
+      
+    })
+  </script>
 </body>
 
 </html>
